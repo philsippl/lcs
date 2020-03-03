@@ -61,7 +61,7 @@ func (e *Encoder) encodeSlice(rv reflect.Value, enumVariants map[reflect.Type]in
 	if rv.Kind() == reflect.Array {
 		// ignore fixedLen
 	} else if fixedLen == 0 {
-		if err = binary.Write(e.w, binary.LittleEndian, uint32(rv.Len())); err != nil {
+		if err = binary.Write(e.w, binary.LittleEndian, byte(rv.Len())); err != nil {
 			return err
 		}
 	} else if fixedLen != rv.Len() {
